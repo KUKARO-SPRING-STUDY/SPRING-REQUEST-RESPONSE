@@ -2,7 +2,10 @@ package org.example.springrequestresponse.service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.springrequestresponse.entity.StudentEntity;
+import org.example.springrequestresponse.exception.CustomException;
 import org.example.springrequestresponse.repository.StudentRepository;
+import org.example.springrequestresponse.response.ErrorCode;
+import org.example.springrequestresponse.response.InputRestriction;
 import org.example.springrequestresponse.response.Student;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,9 @@ public class StudentService {
     private final StudentRepository studentRepository;
 
     public Student save(String name, String grade) {
+        if (grade.compareTo("6") >= 0) {
+            throw new CustomException(ErrorCode.SERVER_ERROR, "grade 는 6 이상을 입력 할 수 없습니다.", new InputRestriction("6"));
+        }
         StudentEntity studentEntity = studentRepository.save(new StudentEntity(null, name, grade));
         return new Student(studentEntity.name(), studentEntity.grade());
     }

@@ -1,2 +1,4 @@
 server:
   port: 9000
+
+#spring.jackson.default-property-inclusion: non_null
