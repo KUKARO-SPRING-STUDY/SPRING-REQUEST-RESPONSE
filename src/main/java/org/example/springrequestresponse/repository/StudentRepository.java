@@ -15,10 +15,8 @@ public class StudentRepository {
 
     @PostConstruct
     public void init() {
-        studentMap.put(atomicInteger.incrementAndGet(), new StudentEntity(atomicInteger.get(), "student1", "A"));
-        studentMap.put(atomicInteger.incrementAndGet(), new StudentEntity(atomicInteger.get(), "student2", "B"));
-        studentMap.put(atomicInteger.incrementAndGet(), new StudentEntity(atomicInteger.get(), "student3", "C"));
-        studentMap.put(atomicInteger.incrementAndGet(), new StudentEntity(atomicInteger.get(), "student3", "C"));
+        studentMap.put(atomicInteger.incrementAndGet(), new StudentEntity(atomicInteger.get(), "kim", "1"));
+        studentMap.put(atomicInteger.incrementAndGet(), new StudentEntity(atomicInteger.get(), "lee", "3"));
     }
 
     public StudentEntity save(StudentEntity studentEntity) {
