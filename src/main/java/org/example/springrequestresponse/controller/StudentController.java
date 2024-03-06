@@ -38,4 +38,10 @@ public class StudentController {
         Student result = studentService.save(student.name(), student.grade());
         return makeResponse(result);
     }
+
+    @DeleteMapping("")
+    public ApiResponse<Student> deleteAllStudent() {
+        studentService.deleteAll();
+        return makeResponse(List.of());
+    }
 }

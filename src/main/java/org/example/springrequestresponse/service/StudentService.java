@@ -39,4 +39,8 @@ public class StudentService {
                 .map(studentEntity -> new Student(studentEntity.name(), studentEntity.grade()))
                 .toList();
     }
+
+    public void deleteAll(){
+        studentRepository.deleteAll();
+    }
 }

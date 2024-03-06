@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class StudentRepository {
@@ -23,14 +22,22 @@ public class StudentRepository {
 
     public StudentEntity save(StudentEntity studentEntity) {
         count++;
-        StudentEntity newStudentEntity= new StudentEntity(count, studentEntity.name(), studentEntity.grade());
+        StudentEntity newStudentEntity = new StudentEntity(count,
+                studentEntity.name(),
+                studentEntity.grade());
         studentMap.put(count, studentEntity);
         return newStudentEntity;
     }
 
     public List<StudentEntity> getAll() {
         return studentMap.entrySet().stream()
-                .map(entry -> new StudentEntity(entry.getKey(), entry.getValue().name(), entry.getValue().grade()))
+                .map(entry -> new StudentEntity(entry.getKey(),
+                        entry.getValue().name(),
+                        entry.getValue().grade()))
                 .toList();
+    }
+
+    public void deleteAll(){
+        studentMap.clear();
     }
 }
