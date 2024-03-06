@@ -1,15 +1,21 @@
 package org.example.springrequestresponse.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.springrequestresponse.response.*;
+import org.example.springrequestresponse.exception.CustomException;
+import org.example.springrequestresponse.response.ApiResponse;
+import org.example.springrequestresponse.response.ErrorCode;
+import org.example.springrequestresponse.response.InputRestriction;
+import org.example.springrequestresponse.response.Student;
 import org.example.springrequestresponse.service.StudentService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static org.example.springrequestresponse.response.ApiResponse.makeResponse;
 
-@RestController
+@Controller
+@ResponseBody
 @RequiredArgsConstructor
 @RequestMapping("/students")
 public class StudentController {

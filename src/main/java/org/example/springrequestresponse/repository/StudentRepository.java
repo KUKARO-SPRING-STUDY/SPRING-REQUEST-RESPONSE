@@ -10,19 +10,21 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class StudentRepository {
-    private final AtomicInteger atomicInteger = new AtomicInteger(0);
+    private int count = 0;
     private final HashMap<Integer, StudentEntity> studentMap = new HashMap<>();
 
     @PostConstruct
     public void init() {
-        studentMap.put(atomicInteger.incrementAndGet(), new StudentEntity(atomicInteger.get(), "kim", "1"));
-        studentMap.put(atomicInteger.incrementAndGet(), new StudentEntity(atomicInteger.get(), "lee", "3"));
+        count++;
+        studentMap.put(count, new StudentEntity(count, "kim", "1"));
+        count++;
+        studentMap.put(count, new StudentEntity(count, "lee", "3"));
     }
 
     public StudentEntity save(StudentEntity studentEntity) {
-        int id = atomicInteger.incrementAndGet();
-        StudentEntity newStudentEntity= new StudentEntity(id, studentEntity.name(), studentEntity.grade());
-        studentMap.put(id, studentEntity);
+        count++;
+        StudentEntity newStudentEntity= new StudentEntity(count, studentEntity.name(), studentEntity.grade());
+        studentMap.put(count, studentEntity);
         return newStudentEntity;
     }
 
