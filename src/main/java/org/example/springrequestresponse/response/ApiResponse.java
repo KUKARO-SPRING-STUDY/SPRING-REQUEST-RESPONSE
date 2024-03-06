@@ -13,16 +13,24 @@ public record ApiResponse<T>(
         @JsonInclude(JsonInclude.Include.NON_NULL)
         T data
 ) {
-
     public ApiResponse(ErrorCode errorCode, String message, T data) {
-        this(new Status(errorCode, message), null, null, data);
+        this(new Status(errorCode, message),
+                null,
+                null,
+                data);
     }
 
     public static <T> ApiResponse<T> makeResponse(T result) {
-        return new ApiResponse<>(new Status(ErrorCode.SUCCESS, "OK"), new Metadata(1), List.of(result), null);
+        return new ApiResponse<>(new Status(ErrorCode.SUCCESS, "OK"),
+                new Metadata(1),
+                List.of(result),
+                null);
     }
 
     public static <T> ApiResponse<T> makeResponse(List<T> result) {
-        return new ApiResponse<>(new Status(ErrorCode.SUCCESS, "OK"), new Metadata(result.size()), result, null);
+        return new ApiResponse<>(new Status(ErrorCode.SUCCESS, "OK"),
+                new Metadata(result.size()),
+                result,
+                null);
     }
 }
