@@ -21,7 +21,7 @@ public class StudentController {
         return makeResponse(result);
     }
 
-    @GetMapping("/{grade}")
+    @GetMapping("/grade/{grade}")
     public ApiResponse<Student> searchStudentByGrade(@PathVariable String grade) {
         List<Student> result = studentService.getByGrade(grade);
         return makeResponse(result);
